@@ -2,6 +2,7 @@ package com.example.springrecipeapp.controller;
 
 import com.example.springrecipeapp.commands.RecipeCommand;
 import com.example.springrecipeapp.domain.Recipe;
+import com.example.springrecipeapp.exceptions.CustomExceptionHandler;
 import com.example.springrecipeapp.exceptions.NotFoundException;
 import com.example.springrecipeapp.services.RecipeService;
 import org.junit.Before;
@@ -32,7 +33,9 @@ public class RecipeControllerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         recipeController = new RecipeController(recipeService);
-        mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(recipeController)
+                .setControllerAdvice(new CustomExceptionHandler())
+                .build();
     }
 
     @Test

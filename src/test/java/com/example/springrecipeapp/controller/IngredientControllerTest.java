@@ -2,6 +2,7 @@ package com.example.springrecipeapp.controller;
 
 import com.example.springrecipeapp.commands.IngredientCommand;
 import com.example.springrecipeapp.commands.RecipeCommand;
+import com.example.springrecipeapp.exceptions.CustomExceptionHandler;
 import com.example.springrecipeapp.services.IngredientService;
 import com.example.springrecipeapp.services.RecipeService;
 import com.example.springrecipeapp.services.UnitOfMeasureService;
@@ -16,11 +17,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.HashSet;
 
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-
-import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class IngredientControllerTest {
 
@@ -43,7 +42,9 @@ public class IngredientControllerTest {
         MockitoAnnotations.initMocks(this);
 
         controller = new IngredientController(ingredientService, recipeService, unitOfMeasureService);
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller)
+                .setControllerAdvice(new CustomExceptionHandler())
+                .build();
     }
 
     @Test
