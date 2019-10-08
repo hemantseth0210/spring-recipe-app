@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    #url: jdbc:mysql://localhost:3306/seth_dev
+    # MySql Docker Container name
+    url: jdbc:mysql://mysqldb:3306/seth_dev
+    username: seth_dev_user
+    password: sunny
+    platform: mysql
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+#      javax:
+#        persistence:
+#          schema-generation:
+#            create-source:
+#            scripts:
+#              action: create
+#              create-target: mysql-database-create.sql
+

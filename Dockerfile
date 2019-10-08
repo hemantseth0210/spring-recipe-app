@@ -14,7 +14,7 @@ RUN mkdir -p /usr/app
 WORKDIR /usr/app
 
 # Copy the jar file into container image under the app directory
-COPY ./target/spring-recipe-app-0.0.1.jar /usr/app/spring-recipe-app.jar
+COPY ./target/spring-recipe-app-0.0.3.jar /usr/app/spring-recipe-app.jar
 
 # Expose port 8080 to the world outside this container
 EXPOSE 8080
